@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pokemon Viewer</title>
+</head>
+<body>
+
+	<h3>Pokemon Viewer By ID</h3>
+	<input id="username" type="text">
+	<input id="password" type="text">
+	
+	
+	<button onclick="getEmployee()">Get Pokemon</button>
+	<div id="result"></div>
+
+</body>
+
+<script>
+
+	function getEmployee() {
+		
+		let username = document.getElementById("username").value;
+		let password = document.getElementById("password").value;
+		
+		let xhttp = new XMLHttpRequest();
+		
+		xhttp.onreadystatechange = function() {
+			
+			if(this.readyState == 4 && this.status == 200) {
+				
+				console.log(this.responseText);
+				
+				let employee = JSON.parse(this.responseText);
+				
+				let information = ` <h3>id: ${employee.em_id}</h3>
+								 	<h3>name: ${employee.first_name}</h3>
+								 	<h3>type: ${employee.last_name}</h3>`
+				
+				document.getElementById("result").innerHTML = information;
+			}
+		}
+		
+		xhttp.open("GET", "http://localhost:8080/Reimbursement/getEmployee.do?username=" + username + "&password=" + password, true);
+		
+		xhttp.send();
+	}
+
+</script>
+</html>

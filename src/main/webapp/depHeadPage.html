@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DepHead Page</title>
+   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body onload="welcome()">
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+ 
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+       <li class="nav-item">
+        <a id="pending" class="nav-link  font-weight-bolder text-dark" href="#" onClick="showpendReim()">Pending Reimbursements</a>
+      </li>
+      <li class="nav-item active">
+        <a id="wait_for_DHead" class="nav-link font-weight-bolder text-dark" href="#" onClick="showDHeadReim()">Supervisor approved</a>
+      </li>
+      
+      <!-- <li  class="nav-item">
+        <a  id="complete_form" class="nav-link  font-weight-bolder text-dark" href="#" onClick="showForm()">Complete the form</a>
+      </li> -->
+      <li class="nav-item">
+        <a id="events" class="nav-link font-weight-bolder text-dark" href="#" onClick="showEvents()">List Event</a>
+      </li>
+      <li class="nav-item">
+        <a id="funds" class="nav-link font-weight-bolder text-dark" href="#" onClick="showFunds()">Available Funds</a>
+      </li>
+      <li class="nav-item">
+        <a id="msg" class="nav-link font-weight-bolder text-dark" href="#" onClick="viewMesages()">Messages</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link font-weight-bolder text-dark" href="login.html">Logout</a>
+      </li>
+    </ul>
+  </div>
+
+  <div id="moveRight" class="font-weight-bolder text-danger"></div>
+  
+</nav>
+
+<div id="welcome"></div>
+
+<div class="main">
+<!-- Pending reimbursements  -->
+ <div id="pendingReim"> 
+  <table class="table table-bordered">
+	  <thead class="thead-dark">
+	    <tr>
+	      <th>First Name</th>
+	      <th>Last Name</th>
+	      <th>Date</th>
+	      <th>Description</th>
+	      <th>Price</th>
+	      <th>Grading Format</th>
+	      <th>Event Type</th>
+	      <th>Approve Reimbursement</th>
+	      <th>Deny Reimbursement</th>
+	      <th>Send a message</th>
+	    </tr>
+	  </thead>
+	  
+	  <tbody id="reimbursements">
+	  </tbody>
+</table>
+</div>
+
+<!-- Supervisor approved reimbursements  -->
+ <!-- <div id="supervisorApproved"> 
+  <table class="table">
+	  <thead>
+	    <tr>
+	      <th>First Name</th>
+	      <th>Last Name</th>
+	      <th>Date</th>
+	      <th>Description</th>
+	      <th>Price</th>
+	      <th>Grading Format</th>
+	      <th>Event Type</th>
+	      <th>Approve Reimbursement</th>
+	      <th>Deny Reimbursement</th>
+	      <th>Send a message</th>
+	    </tr>
+	  </thead>
+	  
+	  <tbody id="reimburDHead">
+	  </tbody>
+</table>
+</div> -->
+
+
+<!-- Complete form -->
+<div class="form" id="myForm">
+	<h3>Complete the form:</h3>
+	<form>
+		<div class="form-column">
+	  
+	  		<div class="form-row">
+				<div class="col-md-2 mb-3">
+					<label for="fName">First name</label>
+					<input type="text" class="form-control" id="fName" required>
+				</div>
+			  
+				<div class="col-md-2 mb-3">
+					<label for="lName">Last name</label>
+					<input type="text" class="form-control" id="lName" required>
+				</div>
+			</div>
+			
+			<div class="form-row">
+		  
+				<div class="col-md-2 mb-3">
+					<label for="date">Date:</label>
+					<input type="date" class="form-control" id="date"  required>
+				</div>
+			
+				<div class="col-md-2 mb-3">
+					<label for="time">Time:</label>
+					<input type="time" class="form-control" id="time" required>
+				</div>
+			</div>
+	  
+	 	</div>
+	 	
+	 	<div class="form-column">
+	
+		    <div class="col-md-3 mb-3">
+				<label for="location">Location</label>
+				<input type="text" class="form-control" id="location" required>
+		    </div>
+		    
+			<div class="col-md-3 mb-3">
+				<label for="desc">Description</label>
+				<textarea class="form-control" id="desc" rows="2"></textarea>
+			</div>
+	     
+			<div class="col-md-3 mb-3">
+				<label for="t_event">Type of Event</label>
+				<select class="custom-select" id="t_event">
+					<option selected>Choose an event type</option>
+					<option value="Seminars">Seminars</option>
+					<option value="Certification">Certification</option>
+					<option value="Tech_Training">Technical Training</option>
+					<option value="Univ_courses">University Courses</option>
+					<option value="Cert_Prep_Classes">Certification Preparation Classes</option>			
+				</select>
+	    	</div>
+	    	
+	    	<div class="col-md-3 mb-3">
+				<label for="g_format">Grading Format</label>
+				<select class="custom-select" id="g_format">
+					<option selected>Choose a grading format</option>
+					<option value="presentation">Presentation</option>	
+					<option value="leter_gr">Letter grading</option>
+					<option value="numeric_gr">Numeric Grading</option>		
+				</select>
+	    	</div>
+	    	
+	    	<div class="col-md-2 mb-3">
+				<label for="cost">Cost</label>
+				<input type="text" class="form-control" id="cost">
+			</div>
+			
+			<div class="col-md-2 mb-3">
+				<label for="upload_file">(Optional) Upload File</label>	
+				<input type="file" id="upload_file" name="upload_file" accept="image/*, .pdf, .txt, .doc, docx">
+	       </div>
+	    	
+	    </div>
+	   
+	
+	  <button id="submitBnt" class="btn btn-primary" type="submit" onClick="sendFormHD()">Submit form</button>
+	</form>
+
+</div>
+
+<!-- Show available funds on the page  -->
+
+<div id="showFunds"></div>
+
+<!-- View all my messages -->
+<div id="msgContainer">
+	<table class="table table-bordered">
+	  <thead class="thead-dark">
+	    <tr>
+	     <th>From:</th>
+	      <th>Message</th>
+	      <th>Write Answer</th>
+	      <th>Send</th>
+	    </tr>
+	  </thead>
+	  <tbody id="myMSGs">
+	  </tbody>
+	</table>
+</div>
+
+<!-- View all events -->
+
+<div id="eventsContainer">
+	<table class="table table-bordered">
+	  <thead class="thead-dark">
+	    <tr>
+	      <th>Event Type</th>
+	      <th>Event Name</th>
+	      <th>Start date</th>
+	      <th>End date</th>
+	      <th>Price</th>
+	      <th>Complete form</th>
+	    </tr>
+	  </thead>
+	  <tbody id="myevents">
+	  </tbody>
+	</table>
+</div>
+
+
+<!-- DO NOT DELETE -->
+<div id="msgBenCo"></div>
+</div>
+</body>
+<script src="js/functionality.js"></script>
+</html>
